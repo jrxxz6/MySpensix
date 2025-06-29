@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Judul Web App Anda</title>
+  <style>
+    /* Tambahkan sedikit gaya untuk loading */
+    body { font-family: sans-serif; }
+    #loader { font-size: 1.2em; color: #555; }
+  </style>
+</head>
+<body>
+
+  <div id="app-container">
+    <p id="loader">Memuat aplikasi...</p>
+  </div>
+
+  <script>
+    // GANTI DENGAN URL WEB APP ANDA YANG SUDAH DI-DEPLOY
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzWylpSa6H8N53sLwkmL_u8bReP2nTu4F0PwPSY4f7wgmE8bYB0Zw9pvej2LOgQMuk/exec';
+
+    // Panggil Apps Script saat halaman dimuat
+    fetch(SCRIPT_URL)
+      .then(response => response.text())
+      .then(html => {
+        // Masukkan konten HTML dari Apps Script ke dalam div 'app-container'
+        document.getElementById('app-container').innerHTML = html;
+      })
+      .catch(error => {
+        // Tampilkan pesan error jika gagal
+        console.error('Error fetching the app:', error);
+        document.getElementById('loader').innerText = 'Gagal memuat aplikasi. Silakan coba lagi nanti.';
+      });
+  </script>
+
+</body>
+</html>
