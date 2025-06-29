@@ -3,128 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web App Saya</title>
-
-    <!-- Google Fonts untuk tampilan yang lebih modern -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-
-    <style>
-        /* CSS Reset sederhana untuk konsistensi browser */
+    <title>Nama Aplikasi Anda</title> <style>
         body, html {
             margin: 0;
             padding: 0;
-            width: 100%;
             height: 100%;
-            font-family: 'Inter', sans-serif;
-            background-color: #f4f7f6; /* Warna latar belakang yang lembut */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #333;
+            overflow: hidden; 
         }
-
-        /* Kontainer untuk aplikasi yang akan dimuat */
-        #app-container {
+        .app-frame {
+            border: none;
             width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-
-        /* Styling untuk pesan loading */
-        .loader {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .spinner {
-            border: 4px solid rgba(0, 0, 0, 0.1);
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            border-left-color: #09f;
-            animation: spin 1s ease infinite;
-        }
-
-        .loader-text {
-            font-size: 1.1em;
-            color: #555;
-            font-weight: 500;
-        }
-
-        /* Animasi untuk spinner */
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-            100% {
-                transform: rotate(360deg);
-            }
+            height: 100vh;
         }
     </style>
 </head>
 <body>
-
-    <!--
-      Konten dari Google Apps Script akan dimuat di dalam div ini.
-      Saat pertama kali dibuka, div ini akan menampilkan pesan "Memuat...".
-    -->
-    <div id="app-container">
-        <div class="loader">
-            <div class="spinner"></div>
-            <p class="loader-text">Memuat aplikasi...</p>
-        </div>
-    </div>
-
-    <script>
-        // --- PENTING! ---
-        // GANTI URL DI BAWAH INI DENGAN URL WEB APP GOOGLE APPS SCRIPT ANDA
-        // Pastikan URL yang Anda deploy memiliki akses "Anyone".
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzWylpSa6H8N53sLwkmL_u8bReP2nTu4F0PwPSY4f7wgmE8bYB0Zw9pvej2LOgQMuk/exec';
-
-        // Fungsi untuk mengambil konten dari Google Apps Script
-        async function loadAppContent() {
-            const container = document.getElementById('app-container');
-
-            try {
-                // Memulai proses fetch ke URL Apps Script
-                const response = await fetch(SCRIPT_URL);
-
-                // Memeriksa apakah request berhasil (status code 200-299)
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-
-                // Mengambil konten HTML sebagai teks
-                const htmlContent = await response.text();
-
-                // Memasukkan konten HTML dari Apps Script ke dalam kontainer.
-                // Ini akan menggantikan pesan "Memuat..."
-                container.innerHTML = htmlContent;
-
-            } catch (error) {
-                // Jika terjadi error saat fetch, tampilkan pesan kesalahan
-                console.error('Gagal memuat konten aplikasi:', error);
-                container.innerHTML = `
-                    <div class="loader">
-                        <p class="loader-text" style="color: #d93025;">
-                            <b>Terjadi Kesalahan</b><br>
-                            Gagal memuat aplikasi. Silakan periksa kembali URL atau coba lagi nanti.
-                        </p>
-                    </div>
-                `;
-            }
-        }
-
-        // Menjalankan fungsi saat halaman selesai dimuat
-        document.addEventListener('DOMContentLoaded', loadAppContent);
-    </script>
-
+    <iframe class="app-frame" src="https://script.google.com/macros/s/AKfycbzWylpSa6H8N53sLwkmL_u8bReP2nTu4F0PwPSY4f7wgmE8bYB0Zw9pvej2LOgQMuk/exec"></iframe>
 </body>
 </html>
